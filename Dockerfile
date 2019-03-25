@@ -9,6 +9,7 @@ COPY ["requirements.txt", "${APPROOT}"]
 
 WORKDIR $APPROOT
 
-RUN pip install -r requirements.txt
+# default timeout bumped as tensorflow >80MB download can time out
+RUN pip3 install -r requirements.txt --default-timeout=200
 
 CMD ["tensorflowapp.py", "--help"]
